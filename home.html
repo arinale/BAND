@@ -9,14 +9,51 @@
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js">
     </script>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+
+
     <style>
         body {
             background: #dcdae5;
+        }
+
+        .card {
+            margin-top: 15px;
         }
     </style>
 </head>
 
 <body>
+    <!-- MODAL-->
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Username:</label>
+                            <input type="text" class="form-control" id="username" value="yarob99">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="password-input" value="123456">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="loginBtnClicked()">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--////// MODAL /////-->
     <div class="container bg-primary ">
         <div class="d-flex justify-content-center">
             <div class="col-9">
@@ -37,16 +74,26 @@
                                     <a class="nav-link" href="#">Profile</a>
                                 </li>
                             </ul>
-                            <div>
-                                <button type="button" class="btn btn-outline-success mx-2">Login</button>
-                                <button type="button" class="btn btn-outline-success">Register</button>
+                            <!-- NON LOGGED USER-->
+                            <div class="d-flex w-100 justify-content-end" id="logged-div">
+                                <button id="login-btn" type="button" class="btn btn-outline-success mx-2 "
+                                    data-bs-toggle="modal" data-bs-target="#login-modal">Login</button>
+                                <button id="register-btn" type=" button"
+                                    class="btn btn-outline-success">Register</button>
                             </div>
+                            <!--  LOGGED USER-->
+                            <div class="d-flex w-100 justify-content-end" id="logout-div">
+                                <button onclick="logout()" id="logout-btn" type="button"
+                                    class="btn btn-outline-danger mx-2 ">Login</button>
+                            </div>
+
                         </div>
                     </div>
                 </nav>
             </div>
         </div>
     </div>
+    <!--container body-->
     <div class="container " style="height: 1000px;">
 
 
@@ -54,8 +101,8 @@
         <div class="d-flex justify-content-center mt-5">
             <div class="col-9">
                 <div id="posts">
-
-                    <div class="card">
+                    <!-- //POST // -->
+                    <div class="card shadow m">
                         <div class="card-header">
                             <img class="rounded-circle border border-2" style="width:40px;height: 40px;"
                                 src=" profile-pict/user-img.jpg" alt="">
@@ -80,19 +127,177 @@
                                 </svg>
                                 <span> (3) Comments</span>
                             </div>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+
+
+                        </div>
+                        <!-- //POST// -->
+                    </div>
+
+
+
+                    <!-- //POST // -->
+                    <div class="card shadow m">
+                        <div class="card-header">
+                            <img class="rounded-circle border border-2" style="width:40px;height: 40px;"
+                                src=" profile-pict/user-img.jpg" alt="">
+                            <b>@arinali </b>
+                        </div>
+                        <div class="card-body">
+                            <img style="width:100%;" src="placeholders/tiger-jpg.jpg" alt="">
+                            <h6 style="color: #c8c6ce;" class="mt-1 mx-2">2 min ago</h6>
+                            <h5>
+                                Hello World
+                            </h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum impedit molestias
+                                eligendi consequuntur, dolore id nam, blanditiis illo eaque totam porro voluptates in
+                                saepe quasi doloremque architecto rerum, excepturi possimus!
+                            </p>
+                            <hr>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path
+                                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                                </svg>
+                                <span> (3) Comments</span>
+                            </div>
+
+
+                        </div>
+                        <!-- //POST// -->
+                    </div>
+                    <!--////////////////////////////////////////////////////////-->
+                    <!-- //POST // -->
+                    <div class="card shadow m">
+                        <div class="card-header">
+                            <img class="rounded-circle border border-2" style="width:40px;height: 40px;"
+                                src=" profile-pict/user-img.jpg" alt="">
+                            <b>@arinali </b>
+                        </div>
+                        <div class="card-body">
+                            <img style="width:100%;" src="placeholders/tiger-jpg.jpg" alt="">
+                            <h6 style="color: #c8c6ce;" class="mt-1 mx-2">2 min ago</h6>
+                            <h5>
+                                Hello World
+                            </h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum impedit molestias
+                                eligendi consequuntur, dolore id nam, blanditiis illo eaque totam porro voluptates in
+                                saepe quasi doloremque architecto rerum, excepturi possimus!
+                            </p>
+                            <hr>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path
+                                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                                </svg>
+                                <span> (3) Comments</span>
+                            </div>
+
+
                         </div>
                         <!-- //POST// -->
                     </div>
                 </div>
             </div>
-            <!-- //POST// -->
-
-
         </div>
         <!-- //POSTS //-->
     </div>
-
+    <!--container body-->
 </body>
+<script>
+    setupUI()
+    const baseUrl = "https://tarmeezacademy.com/api/v1"
+    axios.get(`${baseUrl}/posts?limit=2`)
+        .then((response) => {
+            document.getElementById("posts").innerHTML = ""
+            const posts = response.data.data
+            console.log(posts)
+            for (post of posts) {
+                const author = post.author
+                let postTitle = (post.title) ? post.title : ""
+                let content = `<div class="card shadow m">
+                        <div class="card-header">
+                            <img class="rounded-circle border border-2" style="width:40px;height: 40px;"
+                                src=" ${author.profile_image
+                    }" alt="">
+                            <b>${author.username}</b>
+                        </div>
+                        <div class="card-body">
+                            <img style="width:100%;" src="
+                            ${post.image}" alt="">
+                            <h6 style="color: #c8c6ce;" class="mt-1 mx-2">${post.created_at}</h6>
+                            <h5>
+                               ${postTitle}
+                            </h5>
+                            <p>${post.body}
+                            </p>
+                            <hr>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path
+                                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                                </svg>
+                                <span> (3) Comments</span>
+                            </div>
+
+
+                        </div>
+                        <!-- //POST// -->
+                    </div>`
+
+                document.getElementById("posts").innerHTML += content
+            }
+
+
+        })
+
+    function loginBtnClicked() {
+        const password = document.getElementById("password-input").value
+        const username = document.getElementById("username").value
+        const params = {
+            "username": username,
+            "password": password
+        }
+        const url = `${baseUrl}/login`
+        axios.post(url, params)
+            .then((response) => {
+                localStorage.setItem("token", response.data.token)
+                localStorage.setItem("user", response.data.user)
+                const modal = document.getElementById("login-modal")
+                const modalInstance = bootstrap.Modal.getInstance(modal)
+                modalInstance.hide()
+                alert("user logged successfully")
+                setupUI()
+            })
+
+    }
+
+
+    function logout() {
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+        alert("log out successfully")
+        setupUI()
+    }
+
+
+    function setupUI() {
+        const token = localStorage.getItem("token")
+        const loginDiv = document.getElementById("logged-div")
+
+        const logoutDiv = document.getElementById("logout-div")
+        if (token == null) {
+            loginDiv.style.setProperty("display", "flex", "important")
+            logoutDiv.style.setProperty("display", "none", "important")
+        }
+        else {
+            loginDiv.style.setProperty("display", "none", "important")
+            logoutDiv.style.setProperty("display", "flex", "important")
+        }
+    }
+
+</script>
 
 </html>
